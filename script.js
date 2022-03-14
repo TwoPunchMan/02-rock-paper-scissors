@@ -8,10 +8,6 @@ function computerPlay() {
 	return choice;
 }
 
-function pickChoice() {
-
-}
-
 function playRound(playerSelection, computerSelection) {
 
 	playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase(); 
