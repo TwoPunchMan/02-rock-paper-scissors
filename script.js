@@ -6,13 +6,17 @@ function computerPlay() {
 	return choice;
 }
 
+function playerChooses() {
+	return;
+}
+
 function playRound(playerSelection, computerSelection) {
 
 	playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase(); 
 	let isPlayerWinner;
 
 	// game mechanics handling
-	if (playerSelection == "Rock") {
+	if (playerChoice == "Rock") {
 		if (computerSelection == "Rock") {
 			isPlayerWinner = "tie";
 		} else if (computerSelection == "Paper") {
@@ -20,7 +24,7 @@ function playRound(playerSelection, computerSelection) {
 		} else if (computerSelection == "Scissors") {
 			isPlayerWinner = true;
 		}
-	} else if (playerSelection == "Paper") {
+	} else if (playerChoice == "Paper") {
 		if (computerSelection == "Rock") {
 			isPlayerWinner = true;
 		} else if (computerSelection == "Paper") {
@@ -28,7 +32,7 @@ function playRound(playerSelection, computerSelection) {
 		} else if (computerSelection == "Scissors") {
 			isPlayerWinner = false;
 		}
-	} else if (playerSelection == "Scissors") {
+	} else if (playerChoice == "Scissors") {
 		if (computerSelection == "Rock") {
 			isPlayerWinner = false;
 		} else if (computerSelection == "Paper") {
@@ -50,3 +54,8 @@ function playRound(playerSelection, computerSelection) {
 
 	return resultString;
 }
+
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach(button => button.addEventListener('click', function() {
+	const e = button.getAttribute('value');
+}));
