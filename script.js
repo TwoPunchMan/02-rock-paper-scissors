@@ -1,4 +1,6 @@
 const RPS_CHOICES = ['Rock', 'Paper', 'Scissors'];
+let playerScore = 0;
+let compScore = 0;
 
 function computerPlay() {
 	let index = Math.floor(Math.random() * RPS_CHOICES.length);
@@ -6,8 +8,8 @@ function computerPlay() {
 	return choice;
 }
 
-function playerChooses() {
-	return;
+function pickChoice() {
+
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -45,17 +47,43 @@ function playRound(playerSelection, computerSelection) {
 	let resultString;
 	// result handling
 	if (isPlayerWinner == true) {
+		playerScore++;
 		resultString = "You Win! " + playerSelection + " beats " + computerSelection;
 	} else if (isPlayerWinner == false) {
+		compScore++;
 		resultString = "You Lose! " + computerSelection + " beats " + playerSelection;
 	} else {
 		resultString = "It's a tie! You both chose " + playerSelection;
 	}
 
+	updateScores();
+	checkWinner();
 	return resultString;
+}
+
+function updateScores() {
+	const player = document.querySelector("#player-score");
+	const comp = document.querySelector("#comp-score");
+	player.textContent = `Player: ${playerScore}`;
+	comp.textContent = `Computer: ${compScore}`;
+}
+
+function checkWinner() {
+	let winner = document.querySelector("#winner");
+
+	if (playerScore == 5) {
+		winner.textContent = "Player is the winner!";
+		console.log("Player is the winner!");
+	} else if (compScore == 5) {
+		winner.textContent = "Computer is the winner!";
+		console.log("Computer is the winner!");
+	}
+
 }
 
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach(button => button.addEventListener('click', function() {
 	const e = button.getAttribute('value');
+	let result = playRound(e, computerPlay());
+	console.log(result);
 }));
